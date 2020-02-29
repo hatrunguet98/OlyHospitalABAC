@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" sizes="14x7" th:href="@{images/oly.png}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Oly Hospital mangager
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <!-- CSS Files -->
+    <link th:href="@{/css/material-dashboard.css}" rel="stylesheet"/>
+    <link th:href="@{/css/demo.css}" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-material-design.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/perfect-scrollbar.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/material-dashboard.js}"></script>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="logo">
+            <a th:href="@{/}" class="simple-text logo-normal">
+                <td th:text="${hospital + ' Hospital'}"></td>
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active  ">
+                    <a class="nav-link" th:href="@{/}">
+                        <i class="material-icons">person</i>
+                        <p>Create Patient Record</p>
+                    </a>
+                </li>
+                <li class="nav-item active  ">
+                    <a class="nav-link" th:href="@{/secretary/profile/}">
+                        <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="content">
+            <p color="red" th:if="${error}" class="error">Username is exist!</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <h4>Thêm mới hồ sơ bệnh nhân.</h4>
+                </div>
+                <div class="form">
+                    <form th:action="@{/patientRecord/create/}" th:object="${patientRecordDTO}" method="post"
+                          enctype="utf8">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                                        <span class="input-group-addon"><i
+                                                                class="fa fa-male"></i></span>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           placeholder=" Họ và tên" required autofocus>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-id-badge"
+                                                                                           aria-hidden="true"></i></span>
+                                    <input class="form-control" name="age"
+                                           placeholder="Age" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-id-badge"
+                                                                                           aria-hidden="true"></i></span>
+                                    <input class="form-control" name="numberPhone"
+                                           placeholder="Number phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone"
+                                                                               aria-hidden="true"></i></span>
+                                    <select name="idDoctor">
+                                        <option value=""> Doctor</option>
+                                        <option th:each="doctor : ${doctors}"
+                                                th:value="${doctor.id}"
+                                                th:utext="${'Name: '+doctor.fullName+'.  Department: '+doctor.department}"/>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-home"
+                                                                               aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="address"
+                                           placeholder=" Address" required autofocus>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                    </form>
+                    <button type="button" class="btn btn-danger closeBtn" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

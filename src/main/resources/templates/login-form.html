@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" sizes="14x9" th:href="@{images/oly.png}"/>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <!-- CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body th:background="@{/images/backgroup.jpg}"
+      style="background-size: cover;background-repeat: no-repeat;height: 100%;">
+<main class="main-login">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sign In</h3>
+                        <p color="red" th:if="${loginErro}" class="error">Wrong user or password</p>
+                        <div class="d-flex justify-content-end social_icon">
+                            <img
+                                    class="mb-4"
+                                    th:src="@{/images/oly.png}"
+                                    alt=""
+                                    width="140"
+                                    height="90"
+                            />
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/login}" method="POST">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                      <span class="input-group-text"
+                      ><img
+                              class=""
+                              th:src="@{/images/businessman.png}"
+                              alt=""
+                              width="25"
+                              height="25"
+                      /></span>
+                                </div>
+                                <input
+                                        id="username"
+                                        type="text"
+                                        placeholder="username"
+                                        class="form-control"
+                                        name="user"
+                                        value=""
+                                        required
+                                        autofocus
+                                />
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                      <span class="input-group-text"
+                      ><img
+                              class=""
+                              th:src="@{/images/lock.png}"
+                              alt=""
+                              width="25"
+                              height="25"
+                      /></span>
+                                </div>
+                                <input
+                                        id="password"
+                                        placeholder="password"
+                                        type="password"
+                                        class="form-control"
+                                        name="password"
+                                        required
+                                />
+                            </div>
+                            <div class="row align-items-center remember">
+                                <input type="checkbox" name="remember-me"
+                                       id="remember">Remember Me
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn float-right login_btn"><h4><b>Login</b></h4></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+<!-- <div class="main-content">
+<p th:if="${loginErro}" class="error">Wrong user or password</p>
+<h3>Login to continue</h3>
+<form th:action="@{/login}" method="POST">
+    <input type="text" name="user" placeholder="Your email" /><br />
+    <input type="password" name="password" placeholder="Your password" /><br />
+    <input type="checkbox" name="remember-me" />
+    <button type="submit">Login</button> <br />
+</form>
+<br/>
+<a th:href="@{/registration}">Register</a>
+</div> -->
+</body>
+</html>
