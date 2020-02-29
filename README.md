@@ -8,6 +8,12 @@ Application mange hospitals with ABAC
 <li>Spring boot: 2.1.5.RELEASE</li>
 </ul>
 
+# Database
+<ul>
+<li>Version: Mysql 5.7.26</li>
+<li>Query create database: mysql> CREATE DATABASE hospitalABAC CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</li>
+</ul>
+
 # Install
 mvn install
 
