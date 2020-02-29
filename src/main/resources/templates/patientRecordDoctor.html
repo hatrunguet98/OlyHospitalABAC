@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" sizes="14x9" th:href="@{images/oly.png}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Oly Hospital mangager
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <!-- CSS Files -->
+    <link th:href="@{/css/material-dashboard.css}" rel="stylesheet"/>
+    <link th:href="@{/css/demo.css}" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-material-design.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/perfect-scrollbar.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/material-dashboard.js}"></script>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" th:fragment="sidebar">
+        <div class="logo">
+            <a th:href="@{/}" class="simple-text logo-normal">
+                <td th:text="${hospital + ' Hospital'}"></td>
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active  ">
+                    <a class="nav-link" th:href="@{/}">
+                        <i class="material-icons">person</i>
+                        <p>Patient</p>
+                    </a>
+                </li>
+                <li class="nav-item active  ">
+                    <a class="nav-link" th:href="@{/profile/}">
+                        <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel" th:fragment="user">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class=" col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-warning">
+                                <h4 class="card-title">Employees Saler</h4>
+                                <!--                                <p class="card-category">New employees on 15th September, 2016</p>-->
+                            </div>
+                            <div class="card-body table-responsive">
+                                <div th:switch="${patientRecords}" class="container my-5">
+                                    <table class="table table-hover">
+                                        <thead class="text-warning">
+                                        <th>STT</th>
+                                        <th>Name</th>
+                                        <th>ID</th>
+                                        <th>Age</th>
+                                        <th>NumberPhone</th>
+                                        <th>Address</th>
+                                        <th>Sick</th>
+                                        <th>View</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="patientRecord,iterationStatus : ${patientRecords}">
+                                            <td th:text="${iterationStatus.count}">1</td>
+                                            <td th:text="${patientRecord.name}"></td>
+                                            <td th:text="${patientRecord.id}"></td>
+                                            <td th:text="${patientRecord.age}"></td>
+                                            <td th:text="${patientRecord.numberPhone}"></td>
+                                            <td th:text="${patientRecord.address}"></td>
+                                            <td th:text="${patientRecord.sick}"></td>
+                                            <td><a th:href="@{{id}(id=${patientRecord.id})}"
+                                                   class="btn btn-success btn-sm"><i
+                                                    class="fas fa-pencil-square-o"></i></a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
