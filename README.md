@@ -6,6 +6,7 @@ Application mange hospitals with ABAC
 <li>Java: 8</li>
 <li>Maven: 3.6.1</li>
 <li>Spring boot: 2.1.5.RELEASE</li>
+ <li>Intellij IDE: 2019.1</li>
 </ul>
 
 # Database
