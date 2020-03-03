@@ -35,16 +35,16 @@
 		"target": "subject.roles[0].name == 'ROLE_PATIENT' && action == 'READ_PATIENTRECORD'",
 		"condition": "subject.patient.id == resource.id"
 	},
-		{
-		"name": "Patient view my record",
-		"description": "Patient can view my record.",
-		"target": "subject.roles[0].name == 'ROLE_PATIENT' && action == 'UPDATE_DOCTOR'",
-		"condition": "subject.patient.id == resource.id"
+	{
+		"name": "Receptionists read a patient record",
+		"description": "Receptionists can read a patient record in their hospital.",
+		"target": "subject.roles[0].name == 'ROLE_RECEPTIONIST' && action == 'READ_PATIENTRECORD_IN_HOSPITAL'",
+		"condition": "subject.employee.hospital.type == resource.hospital.type"
 	},
 	{
-		"name": "Patient view my record",
-		"description": "Patient can view my record.",
-		"target": "subject.roles[0].name == 'ROLE_PATIENT' && action == 'CREAT_PATIENTRECORD'",
-		"condition": "subject.patient.id == resource.id"
+		"name": "Nurses can update patient record",
+		"description": "Nurses can update patient record in their department.",
+		"target": "subject.roles[0].name == 'ROLE_NURSE' && action == 'UPDATE_PATIENTRECORD_BY_DEPARTMENT'",
+		"condition": "subject.employee.department.type == resource.department.type && subject.employee.hospital.type == resource.hospital.type"
 	}
 ]
